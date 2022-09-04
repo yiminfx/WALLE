@@ -1,0 +1,32 @@
+
+
+
+def GetFilesRecursive(RootDir, Return="Files", MustHaveStrings=""):
+    TheDirs= []
+    TheFiles = []
+    n = 0
+    for root, dirs, files in os.walk(RootDir):
+        n+=1
+        for n in range(0, len(dirs)):
+            if ((MustHaveStrings=="") or (dirs[n].find(MustHaveStrings) != -1)):
+                TheDirs.append(dirs[n])
+
+        for n in range(0, len(files)):
+            if ((MustHaveStrings=="") or (files[n].find(MustHaveStrings) != -1)):
+                ThisFile = (root.replace("\\", "/")) + "/" + (files[n])
+                TheFiles.append(ThisFile)
+            
+    if Return == "Files":
+        return TheFiles
+    else:
+        return TheDirs
+
+
+folder_path = "C:\Users\ymz19\Downloads\animTest"
+
+files = GetFilesRecursive(folder_path)
+for mFile in files:
+    print (mFile)
+    
+
+

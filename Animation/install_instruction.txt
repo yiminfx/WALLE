@@ -1,0 +1,12 @@
+1) copy the WALLE folder to your maya scripts folder
+
+example path: documents/maya/2020/scripts/WALLE/.../...
+
+
+2) run the following three lines of code in the python script editor.
+you can add it as a shelve button for ease of use.
+
+import WALLE.Animation.AttributeAnimation as anim
+anim_window = anim.main()
+anim_window.show()
+

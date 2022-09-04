@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>478</width>
+    <height>421</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>AssetCreator</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>441</width>
+      <height>321</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>24</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>ASSET PUBLISHER</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="1" column="1">
+        <widget class="QComboBox" name="cmb_subtype">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QComboBox" name="cmb_variation">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+         <item>
+          <property name="text">
+           <string>base</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QComboBox" name="cmb_asset_name">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Subtype:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Asset Name:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="lbl_asset">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Asset Type:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="cmb_asset_type">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+         <item>
+          <property name="text">
+           <string>cam</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>char</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>cre</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>env</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>fx</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>gami</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>prop</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>setdec</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>shame</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>veh</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Variation:</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_publish_asset">
+       <property name="text">
+        <string>Publish Asset</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>478</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
