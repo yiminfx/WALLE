@@ -26,7 +26,7 @@ class scene_factory(object):
         self.output_path = self.file_path
         self.version_num = 1
         self.file_name = 'default'
-
+        
     def import_maya_file(self):
         mc.file(self.output_path, i=True)
 
@@ -66,7 +66,6 @@ class asset_creator(scene_factory):
         self.asset_variation = asset_variation
         self.formatted_version = str(self.version_num).rjust(3, '0')
   
-    
         #self.file_name = self.sequence+ "_" + self.shot_num + "_" + self.task + "_v" + str(formatted_version)
         self.file_name = self.asset_type + '_' + self.asset_subtype + '_' + self.asset_name + '_' + self.asset_variation + '_v'+ self.formatted_version
         

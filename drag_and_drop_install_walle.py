@@ -16,7 +16,6 @@ import pathlib
 # Next update just use pathlib :)
 
 srcPath = pathlib.Path(__file__).parent
-
 shared_command = f'''
 import os
 import sys
