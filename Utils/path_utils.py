@@ -1,5 +1,6 @@
 from importlib.resources import path
 import os
+import pathlib
 import shutil
 import maya.cmds as mc
 from PySide2 import QtWidgets, QtGui, QtCore
@@ -70,9 +71,11 @@ def list_files_from_path(path_in):
 #returns what the maya/script directory is
 #C:/Users/ymz19/Documents/maya/2022/scripts
 def get_script_folder_location():
-    script_location = __file__
+    #script_location = pathlib.Path(__file__).parent
+    script_location =os.path.dirname(__file__)
     find_index = script_location.find('scripts')
     script_folder = script_location[:find_index+7]
-    print('get script folder location: '+script_folder)
+    #script_folder = script_location
+    print('get script folder location s: '+ str(script_folder))
     return script_folder
 
