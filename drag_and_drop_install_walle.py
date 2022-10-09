@@ -10,8 +10,9 @@ import shutil
 import stat
 import traceback
 import time
-import maya.cmds as cmds
-import pymel.core as pm
+import maya.cmds as mc
+import maya.mel as mel
+#mport pymel.core as pm
 import pathlib
 # Next update just use pathlib :)
 
@@ -36,7 +37,7 @@ def onMayaDroppedPythonFile(*args):
         # Display error message if an exception was raised.
         print(traceback.format_exc())
 
-        cmds.confirmDialog(
+        mc.confirmDialog(
             message=(
                 "{}<br>"
                 "<br>"
@@ -59,14 +60,14 @@ def copy_scripts_to_directory():
             raise RuntimeError("Unable to find 'scripts/restartSessionForScript.py' relative to this installer file.")
 
         # Suggest to install in user's script preferences.
-        prefs_dir = os.path.dirname(cmds.about(preferences=True))
+        prefs_dir = os.path.dirname(mc.about(preferences=True))
         scripts_dir = os.path.normpath(os.path.join(prefs_dir, "scripts"))
 
         continue_option = "Continue"
         manual_option = "No, let me choose"
         cancel_option = "Cancel"
 
-        dialog = cmds.confirmDialog(
+        dialog = mc.confirmDialog(
             message=(
                 "WALLE will be installed in a new folder here:<br>"
                 "<i>{}</i>".format(os.path.normpath(os.path.join(scripts_dir, package_name)))),
@@ -83,7 +84,7 @@ def copy_scripts_to_directory():
         
         # Open file picker to choose where to install to.
         if install_path is None:
-            results = cmds.fileDialog2(
+            results = mc.fileDialog2(
                 fileMode=3,
                 okCaption="Install here",
                 caption="Pick a folder to install to",
@@ -100,7 +101,7 @@ def copy_scripts_to_directory():
         if install_path not in python_paths:
             cancel_option = "Cancel"
 
-            dialog = cmds.confirmDialog(
+            dialog = mc.confirmDialog(
                 message=(
                     "Uh oh! Python can't see the path you picked:<br>"
                     "<i>{}</i><br><br>"
@@ -117,7 +118,7 @@ def copy_scripts_to_directory():
         # If it already exists, asks if it's ok to overwrite.
         tool_path = os.path.join(install_path, package_name)
         if os.path.exists(tool_path):
-            dialog = cmds.confirmDialog(
+            dialog = mc.confirmDialog(
                 message=(
                     "This folder already exists:<br>"
                     "<i>{}</i><br><br>"
@@ -144,7 +145,7 @@ def copy_scripts_to_directory():
         shutil.copytree(source_path, tool_path)
 
         # Display success!
-        cmds.confirmDialog(
+        mc.confirmDialog(
             message=(
                 "The tool has been successfully installed!<br><br>"
                 "If you want to remove it then simply delete this folder:<br>"
@@ -159,12 +160,14 @@ def copy_scripts_to_directory():
 def add_populated_shelf():
     create_shelf()
     #add individual items
+    print('running populated shelf---------')
     add_shot_creator_as_shelf_item()
     add_shot_browser_as_shelf_item()
     add_asset_creator_as_shelf_item()
     add_asset_publisher_as_shelf_item()
     add_asset_loader_as_shelf_item()
     add_attribute_anim_as_shelf_item()
+    add_megascan_loader_as_shelf_item()
 
 
 
@@ -255,6 +258,23 @@ asset_window.show()
     shelf_item_instance = Shelf_Item(srcPath,iconPath,command,annotation)
     shelf_item_instance.create_shelf_item()
 
+def add_megascan_loader_as_shelf_item():
+
+    iconPath = _get_icon_path_helper('I_megascanLoader.png')
+    item_command = f'''    
+import WALLE.SceneManagement.scene_creator as sc
+import imp
+imp.reload(sc)
+
+megascan_window = sc.megascan_loader_creator_window()
+megascan_window.show()
+
+    '''
+    command = shared_command + item_command
+    annotation = 'widget for loading in megascan assets'
+    shelf_item_instance = Shelf_Item(srcPath,iconPath,command,annotation)
+    shelf_item_instance.create_shelf_item()
+
 def add_attribute_anim_as_shelf_item():
             ### shot creator ###
     #srcPath = pathlib.Path(__file__).parent
@@ -279,20 +299,22 @@ def create_shelf():
     
     ### This part creates the Walle_tools shelf ###
     print('creating shelf')
-    parentShelf = pm.mel.eval('$gShelfTopLevel=$gShelfTopLevel')
-    currentShelves = pm.tabLayout(parentShelf,query=1,childArray=1)
+    parentShelf = mel.eval('$gShelfTopLevel=$gShelfTopLevel')
+    currentShelves = mc.tabLayout(parentShelf,query=1,childArray=1)
+    
 
     walle_tool = False
     for shelf in currentShelves:
         if 'Walle_tools' in shelf:
             walle_tool = True
-            items = pm.shelfLayout(shelf,query=1,childArray=1)
+            items = mc.shelfLayout(shelf,query=1,childArray=1)
             if items != None:
                 for i in items:
-                    pm.deleteUI(i) # deletes walle_tool shelf and all contents
+                    
+                    mc.deleteUI(i) # deletes walle_tool shelf and all contents
                     print('Walle_tools shelf tools removed for re-install')
     if not walle_tool:
-        pm.mel.eval('addNewShelfTab "Walle_tools";')
+        mel.eval('addNewShelfTab "Walle_tools";')
         print('New Walle_tools shelf made!') # makes Walle_tools shelf
 
     ### This part creates the shelf items ###
@@ -303,12 +325,12 @@ class Shelf_Item():
     Shelf Item Object Class
     Makes it quick and easy to add new shelf item
     '''
-    def __init__(self, source, icon, command, annotation, parent = pm.mel.eval('$gShelfTopLevel=$gShelfTopLevel'), noDefaultPopup = False) -> None:
+    def __init__(self, source, icon, command, annotation, parent = mel.eval('$gShelfTopLevel=$gShelfTopLevel'), noDefaultPopup = False) -> None:
         self.source= pathlib.Path(source)
         self.icon = pathlib.Path(icon)
         self.command = command
         self.annotation = annotation
-        self.parent = pm.tabLayout(parent, query=True, selectTab=True)
+        self.parent = mc.tabLayout(parent, query=True, selectTab=True)
         self.noDefaultPopup = noDefaultPopup
 
     def create_shelf_item(self):
@@ -322,8 +344,12 @@ class Shelf_Item():
 
         srcPath = str(self.source)
         iconPath = str(self.icon)
+        
+        #check if shelve contains it ??
+        items = mc.shelfLayout(self.parent,query=1,childArray=1)
 
-        shelfButton = pm.shelfButton(
+
+        shelfButton = mc.shelfButton(
             command = self.command,
             annotation = self.annotation,
             sourceType = 'Python',

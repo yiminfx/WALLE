@@ -56,7 +56,9 @@ class MayaShotBrowser(commonUI.UI):
 
         root_dir = mc.workspace(q=True, rd=True)
         seq_dir = root_dir+"shots"
-    
+        if not os.path.exists(seq_dir):
+            os.makedirs(seq_dir)
+
         seqDirs = os.listdir(seq_dir)
 
         for seq in seqDirs:
@@ -133,8 +135,10 @@ class MayaShotBrowser(commonUI.UI):
         for m in mFiles:
             self.window.lst_files.addItem(str(m))
         
-        if (mFiles[0]):
-            self.window.lst_files.setItemSelected(self.window.lst_files.item(0), True)
+        list_size = len(mFiles)
+
+        if (mFiles[list_size-1]):
+            self.window.lst_files.setItemSelected(self.window.lst_files.item(list_size-1), True)
 
 
 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>596</width>
-    <height>536</height>
+    <width>666</width>
+    <height>544</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,11 +19,80 @@
      <rect>
       <x>20</x>
       <y>20</y>
-      <width>555</width>
+      <width>636</width>
       <height>466</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QRadioButton" name="rbt_showPref">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Show Root Folder</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="gpb_pref">
+         <property name="title">
+          <string>set megascan folder</string>
+         </property>
+         <widget class="QPushButton" name="btn_browse">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>75</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>browse</string>
+          </property>
+         </widget>
+         <widget class="QWidget" name="horizontalLayoutWidget_2">
+          <property name="geometry">
+           <rect>
+            <x>102</x>
+            <y>-7</y>
+            <width>249</width>
+            <height>101</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="Hbox_folderPrefs">
+           <item>
+            <widget class="QLabel" name="lbl_megascanPath">
+             <property name="text">
+              <string>TextLab                     wwwwwwww</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QPushButton" name="btn_setPref">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>50</y>
+            <width>75</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>set</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
@@ -64,7 +133,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Asset Loader</string>
+          <string>MEGASCAN LOADER</string>
          </property>
          <property name="wordWrap">
           <bool>false</bool>
@@ -119,7 +188,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Asset Name:</string>
+          <string>LOD:</string>
          </property>
         </widget>
        </item>
@@ -147,123 +216,34 @@
          </property>
          <item>
           <property name="text">
-           <string>setdec</string>
+           <string>3d</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>cam</string>
+           <string>3dplant</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>char</string>
+           <string>alas</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>cre</string>
+           <string>brush</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>env</string>
+           <string>DHI</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>fx</string>
+           <string>surface</string>
           </property>
          </item>
-         <item>
-          <property name="text">
-           <string>gami</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>prop</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>shame</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>veh</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QComboBox" name="cmb_variation">
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="editable">
-          <bool>true</bool>
-         </property>
-         <item>
-          <property name="text">
-           <string>base</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label_4">
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Variation:</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QGroupBox" name="groupBox">
-         <property name="title">
-          <string/>
-         </property>
-         <widget class="QRadioButton" name="rdb_reference">
-          <property name="geometry">
-           <rect>
-            <x>380</x>
-            <y>10</y>
-            <width>180</width>
-            <height>17</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>reference</string>
-          </property>
-         </widget>
-         <widget class="QRadioButton" name="rdb_import">
-          <property name="geometry">
-           <rect>
-            <x>9</x>
-            <y>10</y>
-            <width>180</width>
-            <height>17</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>import</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
         </widget>
        </item>
       </layout>
@@ -277,13 +257,34 @@
      </item>
     </layout>
    </widget>
+   <widget class="QComboBox" name="cmb_variation">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>670</y>
+      <width>272</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="editable">
+     <bool>true</bool>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>596</width>
+     <width>666</width>
      <height>21</height>
     </rect>
    </property>
